@@ -1,8 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.util.Pair;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,8 +40,8 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view){
-        new EndpointsAsyncTask().execute(new Pair<Context, String>(this, "Nicolas"));
+    public void launchJokeActivity(View view){
+        new EndpointsAsyncTask().execute(this);
     }
 
 

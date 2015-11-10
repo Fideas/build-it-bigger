@@ -17,3 +17,21 @@ allprojects {
         jcenter()
     }
 }
+
+task launchCGEandTest {
+    dependsOn = [':backend:appengineRun',
+                 ':app:connectedAndroidTest',
+                 ':backend:appengineStop']
+    evaluationDependsOn(':backend')
+
+    project(':backend') {
+        appengine{
+            daemon true
+        }
+    }
+    tasks.getByPath(':app:connectedAndroidTest')
+            .mustRunAfter(tasks.getByPath(':backend:appengineRun'))
+    tasks.getByPath(':backend:appengineStop')
+            .mustRunAfter(tasks.getByPath(':app:connectedAndroidTest'))
+
+}

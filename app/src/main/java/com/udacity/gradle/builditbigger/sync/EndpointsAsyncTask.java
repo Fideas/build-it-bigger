@@ -12,11 +12,12 @@ import com.nicolascarrasco.www.jokeactivity.JokeActivity;
 import java.io.IOException;
 
 /**
- * Created by Nicolás Carrasco on 09/11/2015.
+ * Simple AsyncTask used to fetch jokes from the Endpoint
  */
 public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
     private static MyApi myApiService = null;
     private Context context;
+    private EndpointsAsyncTaskListener mListener = null;
 
     @Override
     protected String doInBackground(Context... params) {
@@ -46,8 +47,19 @@ public class EndpointsAsyncTask extends AsyncTask<Context, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
+        if(this.mListener != null){
+            this.mListener.onComplete(result);
+        }
         Intent intent = new Intent(context, JokeActivity.class);
         intent.putExtra(Intent.EXTRA_TEXT, result);
         context.startActivity(intent);
+    }
+
+    public void setListener(EndpointsAsyncTaskListener listener) {
+        this.mListener = listener;
+    }
+
+    public static interface EndpointsAsyncTaskListener {
+        public void onComplete(String result);
     }
 }

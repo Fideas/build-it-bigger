@@ -3,14 +3,14 @@ package com.udacity.gradle.builditbigger;
 import android.content.Context;
 import android.test.InstrumentationTestCase;
 import android.text.TextUtils;
-import android.util.Log;
 
 import com.udacity.gradle.builditbigger.sync.EndpointsAsyncTask;
 
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by Nicolás Carrasco on 10/11/2015.
+ * Simple test to assert that the joke is not empty.
+ * Based on the following SO answer http://stackoverflow.com/a/5722193/2148666
  */
 public class AsyncTaskTest extends InstrumentationTestCase {
 

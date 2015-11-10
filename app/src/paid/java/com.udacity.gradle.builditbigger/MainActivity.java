@@ -43,6 +43,4 @@ public class MainActivity extends ActionBarActivity {
     public void launchJokeActivity(View view){
         new EndpointsAsyncTask().execute(this);
     }
-
-
 }
